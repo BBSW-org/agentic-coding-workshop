@@ -2,7 +2,7 @@
 
 This repository contains materials for a hands-on workshop on agentic coding and harness engineering.
 
-Preview is available at <https://bbsw-org.github.io/agent-coding-workshop/>.
+Preview is available at <https://bbsw-org.github.io/agentic-coding-workshop/>.
 
 ## Quick start
 
