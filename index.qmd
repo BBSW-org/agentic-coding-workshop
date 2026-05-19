@@ -11,8 +11,6 @@ connected ideas: vibe coding, agentic workflows, and harness engineering.
 Together, they form a self-validating loop that turns research intent into
 regulatory-compliant statistical reality.
 
-**This is a work-in-progress draft.**
-
 ::: {.content-visible when-format="html"}
 
 ## Events {.unnumbered}
@@ -22,3 +20,7 @@ regulatory-compliant statistical reality.
 | TBD   | TBD  | TBD  | TBD       |
 
 :::
+
+## License
+
+This material is licensed to you under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
