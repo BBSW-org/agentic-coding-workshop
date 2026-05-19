@@ -1,0 +1,75 @@
+project:
+  type: book
+  resources:
+    - slides/
+
+book:
+  title: "Workshop on Agentic Coding and Harness Engineering"
+  author:
+    - Anqi Zhu
+    - Nan Xiao
+  description: |
+    A beginner-friendly workshop on vibe coding, agentic workflows,
+    and harness engineering. Build a self-validating loop that turns
+    research intent into regulatory-compliant statistical reality and
+    become an AI-native professional at the new frontier of statistical
+    computing.
+
+  output-file: "agentic-coding-workshop"
+
+  cover-image: "assets/cover.jpg"
+  image: "assets/preview.png"
+  favicon: "assets/favicon.png"
+
+  site-url: https://bbsw-org.github.io/agent-coding-workshop/
+  repo-url: https://github.com/BBSW-org/agentic-coding-workshop
+  repo-actions: [edit, issue, source]
+  sharing: [twitter, linkedin]
+  reader-mode: true
+
+  open-graph:
+    image: assets/preview.png
+    description: |
+      A beginner-friendly workshop on vibe coding, agentic workflows,
+      and harness engineering. Build a self-validating loop that turns
+      research intent into regulatory-compliant statistical reality and
+      become an AI-native professional at the new frontier of statistical
+      computing.
+  twitter-card:
+    image: assets/preview.png
+    description: |
+      A beginner-friendly workshop on vibe coding, agentic workflows,
+      and harness engineering. Build a self-validating loop that turns
+      research intent into regulatory-compliant statistical reality and
+      become an AI-native professional at the new frontier of statistical
+      computing.
+    card-style: summary_large_image
+
+  chapters:
+    - index.qmd
+    - preface.qmd
+    - part: "Principles"
+      chapters:
+        - principle-overview.qmd
+    - part: "Vibe coding"
+      chapters:
+        - vibe-coding-overview.qmd
+    - part: "Agentic workflows"
+      chapters:
+        - agentic-workflow-overview.qmd
+    - part: "Harness engineering"
+      chapters:
+        - harness-engineering-overview.qmd
+    - part: "Governance"
+      chapters:
+        - governance-overview.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: [cosmo, custom.scss]
+    mainfont: "Lato, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"
+  pdf:
+    documentclass: scrreprt

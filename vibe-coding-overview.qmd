@@ -1,0 +1,11 @@
+# Vibe coding overview {#sec-vibe-coding-overview}
+
+::: callout-tip
+## Objective
+
+TBD
+:::
+
+## TBD
+
+TBD

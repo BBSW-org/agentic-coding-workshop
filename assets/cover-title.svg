@@ -1,0 +1,15 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style type="text/css">
+      @font-face {
+        font-family: "Lato";
+        src: url("https://pycsr.org/site_libs/bootstrap/fonts/Lato-VF.woff2") format("woff2");
+        font-weight: 300 700;
+        font-style: normal;
+      }
+    </style>
+  </defs>
+  <text x="52.4%" y="40%" font-family="Lato" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">BBSW 2026</text>
+  <text x="57.6%" y="44%" font-family="Lato" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">Workshop on Agentic Coding</text>
+  <text x="56.2%" y="48%" font-family="Lato" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">and Harness Engineering</text>
+</svg>

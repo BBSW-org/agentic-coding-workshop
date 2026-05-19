@@ -1,0 +1,22 @@
+# Preface {.unnumbered}
+
+## In this book {.unnumbered}
+
+This book is designed for people who are interested in using AI for clinical development.
+Each part of the book makes certain assumptions about the readers' background:
+
+- Part 1, Principles: a shared vocabulary for vibe coding, agentic
+  workflows, and harness engineering, and how they fit together as
+  a self-validating loop. No prior AI experience required.
+- Part 2, Vibe coding: directing AI assistants to write code from
+  natural-language intent. Comfort with a text editor is assumed.
+- Part 3, Agentic workflows: composing multi-step autonomous
+  workflows that handle research, analysis, and reporting tasks.
+  Some scripting background (R or Python) is helpful.
+- Part 4, Harness engineering: building the evaluations, guardrails,
+  and feedback signals that keep agents honest, reproducible, and
+  submission-ready. Familiarity with version control and CI/CD is
+  helpful.
+- Part 5, Governance: organizing AI-assisted work for regulatory
+  submission, audit, and team collaboration. Familiarity with
+  regulated environments is helpful but not required.
