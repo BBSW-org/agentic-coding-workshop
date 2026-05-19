@@ -1,0 +1,24 @@
+# Welcome {.unnumbered}
+
+Welcome to the BBSW 2026 workshop on agentic coding and harness engineering.
+
+AI is progressing faster than ever, and a central question is emerging for
+data professionals in pharma and biotech: how can we prepare ourselves to
+create higher impact in our organizations and in healthcare?
+
+This book accompanies a hands-on, beginner-friendly workshop on three
+connected ideas: vibe coding, agentic workflows, and harness engineering.
+Together, they form a self-validating loop that turns research intent into
+regulatory-compliant statistical reality.
+
+**This is a work-in-progress draft.**
+
+::: {.content-visible when-format="html"}
+
+## Events {.unnumbered}
+
+| Venue | Type | Date | Materials |
+|-------|------|------|-----------|
+| TBD   | TBD  | TBD  | TBD       |
+
+:::
