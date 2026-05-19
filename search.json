@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Workshop on Agentic Coding and Harness Engineering",
     "section": "",
-    "text": "Welcome\nWelcome to the BBSW 2026 workshop on agentic coding and harness engineering.\nAI is progressing faster than ever, and a central question is emerging for data professionals in pharma and biotech: how can we prepare ourselves to create higher impact in our organizations and in healthcare?\nThis book accompanies a hands-on, beginner-friendly workshop on three connected ideas: vibe coding, agentic workflows, and harness engineering. Together, they form a self-validating loop that turns research intent into regulatory-compliant statistical reality.\nThis is a work-in-progress draft.",
+    "text": "Welcome\nWelcome to the BBSW 2026 workshop on agentic coding and harness engineering.\nAI is progressing faster than ever, and a central question is emerging for data professionals in pharma and biotech: how can we prepare ourselves to create higher impact in our organizations and in healthcare?\nThis book accompanies a hands-on, beginner-friendly workshop on three connected ideas: vibe coding, agentic workflows, and harness engineering. Together, they form a self-validating loop that turns research intent into regulatory-compliant statistical reality.",
     "crumbs": [
       "Welcome"
     ]
@@ -15,6 +15,16 @@
     "title": "Workshop on Agentic Coding and Harness Engineering",
     "section": "Events",
     "text": "Events\n\n\n\nVenue\nType\nDate\nMaterials\n\n\n\n\nTBD\nTBD\nTBD\nTBD",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "Workshop on Agentic Coding and Harness Engineering",
+    "section": "License",
+    "text": "License\nThis material is licensed to you under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.",
     "crumbs": [
       "Welcome"
     ]
