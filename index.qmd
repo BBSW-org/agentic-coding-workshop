@@ -11,14 +11,6 @@ connected ideas: vibe coding, agentic workflows, and harness engineering.
 Together, they form a self-validating loop that turns research intent into
 regulatory-compliant statistical reality.
 
-Stop writing, start directing. You will learn to draft intent in natural
-language, let agents handle the multi-step work, and engineer the harness
-that keeps the loop honest, reproducible, and submission-ready.
-
-Whether you are a data scientist, analyst, engineer, or simply passionate
-about data and AI, the material aims to help you become an AI-native
-professional at the new frontier of statistical computing.
-
 **This is a work-in-progress draft.**
 
 ::: {.content-visible when-format="html"}
