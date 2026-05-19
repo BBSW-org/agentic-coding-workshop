@@ -19,16 +19,10 @@ uv sync
 source .venv/bin/activate
 ```
 
-Render all formats:
+Render HTML:
 
 ```bash
 quarto render
-```
-
-Render HTML only:
-
-```bash
-quarto render --to html
 ```
 
 Render slides:
