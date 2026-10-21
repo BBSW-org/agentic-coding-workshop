@@ -48,6 +48,9 @@ book:
   chapters:
     - index.qmd
     - preface.qmd
+    - part: "Getting started"
+      chapters:
+        - whole-game.qmd
     - part: "Principles"
       chapters:
         - principle-overview.qmd
