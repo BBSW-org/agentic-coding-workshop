@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bbsw-org.github.io/agent-coding-workshop/index.html</loc>
-    <lastmod>2026-05-19T23:18:00.516Z</lastmod>
+    <lastmod>2026-10-21T03:01:11.410Z</lastmod>
   </url>
   <url>
     <loc>https://bbsw-org.github.io/agent-coding-workshop/preface.html</loc>
-    <lastmod>2026-05-19T23:18:00.516Z</lastmod>
+    <lastmod>2026-10-21T03:01:11.410Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bbsw-org.github.io/agent-coding-workshop/whole-game.html</loc>
+    <lastmod>2026-10-21T03:01:11.413Z</lastmod>
   </url>
   <url>
     <loc>https://bbsw-org.github.io/agent-coding-workshop/principle-overview.html</loc>
-    <lastmod>2026-05-19T23:18:00.516Z</lastmod>
+    <lastmod>2026-10-21T03:01:11.410Z</lastmod>
   </url>
   <url>
     <loc>https://bbsw-org.github.io/agent-coding-workshop/vibe-coding-overview.html</loc>
-    <lastmod>2026-05-19T23:18:00.519Z</lastmod>
+    <lastmod>2026-10-21T03:01:11.413Z</lastmod>
   </url>
   <url>
     <loc>https://bbsw-org.github.io/agent-coding-workshop/agentic-workflow-overview.html</loc>
-    <lastmod>2026-05-19T23:18:00.514Z</lastmod>
+    <lastmod>2026-10-21T03:01:11.406Z</lastmod>
   </url>
   <url>
     <loc>https://bbsw-org.github.io/agent-coding-workshop/harness-engineering-overview.html</loc>
-    <lastmod>2026-05-19T23:18:00.516Z</lastmod>
+    <lastmod>2026-10-21T03:01:11.410Z</lastmod>
   </url>
   <url>
     <loc>https://bbsw-org.github.io/agent-coding-workshop/governance-overview.html</loc>
-    <lastmod>2026-05-19T23:18:00.516Z</lastmod>
+    <lastmod>2026-10-21T03:01:11.410Z</lastmod>
   </url>
   <url>
     <loc>https://bbsw-org.github.io/agent-coding-workshop/references.html</loc>
-    <lastmod>2026-05-19T23:18:00.516Z</lastmod>
+    <lastmod>2026-10-21T03:01:11.410Z</lastmod>
   </url>
 </urlset>

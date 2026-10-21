@@ -50,58 +50,178 @@
     ]
   },
   {
+    "objectID": "whole-game.html",
+    "href": "whole-game.html",
+    "title": "1  The Whole Game",
+    "section": "",
+    "text": "1.1 Agents are models using tools\nSpoiler alert!\nThis chapter runs through the whole game of working with a coding agent: posing a problem, letting the agent solve it, and deciding when it is done. It is meant to paint the big picture and suggest a way of thinking, before we get into the details in the rest of the book.\nWhen producing code is no longer the bottleneck, the bottleneck becomes deciding what to build and knowing when it is right. For that, we borrow a framework you already know from sparse linear models: structured optimization.\nA coding agent is a language model that uses tools. You describe what you want first. The agent reads files, writes code, runs it, looks at the result, and decides what to do next. It repeats this inexplicit loop until it decides the job is done.\nAs of 2026, there are three key components that make this loop work:\nIf you have implemented IRLS or EM, you know this shape: propose a step, evaluate it, update, check for convergence. The model is the solver. The harness is the algorithm that runs it. Both improve every few months without any help from you. But neither knows what problem you want solved. That part is yours, and it is what the rest of this chapter is about.\nNote that we don’t tell the agent how to use its tools. The goal is to let the model figure that out. Never try to do its job for it!",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "whole-game.html#agents-are-models-using-tools",
+    "href": "whole-game.html#agents-are-models-using-tools",
+    "title": "1  The Whole Game",
+    "section": "",
+    "text": "The model does the inference. It reads everything so far and proposes the next action.\nThe harness is the runtime around the model. It supplies the tools (read, edit, search, run commands) and drives the loop: reason, act, observe, repeat (Yao et al. 2023).\nThe prompt is what you tell the model about your problem.",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "whole-game.html#structured-optimization",
+    "href": "whole-game.html#structured-optimization",
+    "title": "1  The Whole Game",
+    "section": "1.2 Structured optimization",
+    "text": "1.2 Structured optimization\nThere is a useful way to think about sparse linear models that is not quite a theorem, but is close enough to be worth keeping in your head:\n\\[\n\\text{fit the data}\n\\ + \\\n\\text{prefer simple structure}\n\\ + \\\n\\text{only allow reasonable answers}.\n\\]\nIn more statistical notation (Negahban et al. 2012):\n\\[\n\\hat\\beta\n\\in\n\\arg\\min_{\\beta \\in \\mathcal C}\n\\left\\{\n\\mathcal L_n(\\beta) + \\lambda \\mathcal R(\\beta)\n\\right\\}.\n\\]\n\n\\(\\mathcal L_n(\\beta)\\) is the objective: squared error, negative log-likelihood, negative log partial likelihood. It says: please explain the data.\n\\(\\mathcal R(\\beta)\\) is the regularizer: \\(\\|\\beta\\|_1\\) for the lasso, something more opinionated for the group lasso, fused lasso, and friends. It says: yes, but not in a ridiculous way.\n\\(\\mathcal C\\) is the constraint set: nonnegative coefficients, monotone fits, interactions only alongside their main effects. These are world rules.\n\nThe statistical model picks the loss. Prior knowledge picks the regularizer. The problem picks the constraints. A solver does the rest.",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "whole-game.html#from-linear-models-to-coding-agents",
+    "href": "whole-game.html#from-linear-models-to-coding-agents",
+    "title": "1  The Whole Game",
+    "section": "1.3 From linear models to coding agents",
+    "text": "1.3 From linear models to coding agents\nWhen we ask a coding agent to do something, a lot of things happen beyond just talking to a model. We are posing an optimization problem to a strange, stochastic, tool-using solver:\n\\[\n\\widehat{\\text{code}}\n\\in\n\\arg\\min_{\\text{code} \\,\\in\\, \\text{environment}}\n\\left\\{\n\\text{task} + \\lambda \\cdot \\text{context}\n\\right\\}.\n\\]\n\n\n\nTable 1.1: The whole game at a glance.\n\n\n\n\n\n\n\n\n\n\nStructured optimization\nAgentic coding\nExample\n\n\n\n\nObjective \\(\\mathcal L_n\\)\nTask\nPort this SAS macro to R.\n\n\nRegularizer \\(\\mathcal R\\)\nContext\nFollow the style of the existing package.\n\n\nConstraint set \\(\\mathcal C\\)\nEnvironment\nTests pass and the package builds.\n\n\nTuning parameter \\(\\lambda\\)\nWeight on context\nHigh for a patch, low for exploration.\n\n\nSolver\nModel and harness\nAn LLM in Claude Code or Codex.\n\n\nConvergence criterion\nDefinition of done\nR CMD check is clean.\n\n\n\n\n\n\n\n1.3.1 Context is soft, environment is hard\nThe difference between the last two terms matters as much here as it does in the lasso. Context is soft. The model weighs it against the task and sometimes decides your preference isn’t worth the trouble. The environment is hard. A test passes or it doesn’t.\nThis leads to the most practical advice in this chapter: if something is non-negotiable, don’t just say it, check it. A constraint that only lives in the prompt is a regularizer.\n\nThe output is broken, but in a way that’s getting harder and harder to detect. Which is exactly what you would expect from an increasingly accurate statistical model.\n— George Hotz, The Eternal Sloptember\n\nReading the output and nodding along doesn’t scale. Our industry figured this out long before LLMs: we don’t trust a table until an independent program reproduces it. The environment is your QC programmer, and it never gets tired.\n\n\n1.3.2 Choosing \\(\\lambda\\)\n\\(\\lambda\\) sets how hard you lean on context, and the right value depends on the task. Patching a mature codebase calls for a large \\(\\lambda\\): the fix should look like it was always there. Exploratory research calls for a small one: let the model roam. Building from scratch sits in between, and the prompt spends most of its words on the task and the environment instead.",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "whole-game.html#the-whole-procedure-matters",
+    "href": "whole-game.html#the-whole-procedure-matters",
+    "title": "1  The Whole Game",
+    "section": "1.4 The whole procedure matters",
+    "text": "1.4 The whole procedure matters\nThe model proposes actions. The tools execute them. The environment evaluates them. The next action depends on what happened before. At that point, we are designing a procedure.\nAs statisticians, we should be very comfortable with that idea. We would never judge a group sequential design by its final test statistic alone; its operating characteristics depend on the stopping boundaries. Likewise, what an agent delivers depends on the whole procedure: the prompt, the files it sees, the examples, the tools, the tests, the error messages returned, and the stopping rule. Of course the model matters a lot, but the procedure matters more than people often admit.\nThis is why agentic engineering is more than plumbing. The job is to turn a vague request into a well-posed problem.",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "whole-game.html#fewer-words",
+    "href": "whole-game.html#fewer-words",
+    "title": "1  The Whole Game",
+    "section": "1.5 Fewer words",
+    "text": "1.5 Fewer words\nThere are endless ways to write a prompt. Our goal is to express intent in as few words as possible.\nA prompt is fit to one model: the one you are using today. Pile on tricks tuned to its quirks and the prompt overfits. It breaks when the model’s tendencies shift or its capabilities jump. Occam’s razor applies. If the model is smart enough, it will find its own path up the mountain. Our job is to say why we are climbing, where the summit is, and what gear is in the pack.\nIn practice, the first prompt should one-shot the task or, at least, get its general shape right. Follow-up prompts should only fix the details.\nIt helps to keep a personal prompt library: first prompts that worked, and notes on the ones that didn’t. The template below summarizes how we write first prompts.",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "whole-game.html#a-prompt-template",
+    "href": "whole-game.html#a-prompt-template",
+    "title": "1  The Whole Game",
+    "section": "1.6 A prompt template",
+    "text": "1.6 A prompt template\nThe template has one section per term in the problem.\n## Context\n\nHigh-level goal of the project, and of the part we are working on.\nWhat already exists, what's missing, and what needs to be done.\n\nDomain metadata: what the output looks like, and the usual way to do it.\nInstitutional knowledge, or where to find it.\nSpecial requirements, especially anything out of distribution.\nLessons from past sessions: corrections, mistakes not to repeat.\n\n## Task\n\nYour high-level task is to [insert task here].\n\n1. Specific subtask, with the files to read (@path/to/input) and write.\n2. ...\n\nHow to verify the task is complete: tests to run, metrics to hit.\nQuality loop: lint, test, document.\nRecord guidelines for future agents in `AGENTS.md`.\n\n## Environment\n\n- A map of the existing codebase, if any.\n- Source code of reference projects under @deps-src/.\n- What is already installed. Ask before installing anything new.\n- The package manager and how to run commands.\n- Frameworks, libraries, and tools to use, with versions if they matter.\n- Real-world considerations, such as parallelism and error handling.\nA few notes:\n\nWe lead with context, the way you would brief a new colleague: background first, then the ask.\nThe task section says what done means. The environment section supplies the machinery that checks it.\nNot every section needs to be long. Their lengths follow \\(\\lambda\\) and the type of task.\nSome harnesses remember lessons across sessions. If yours doesn’t, or you are starting fresh, put the lessons in context.\nAGENTS.md is a file many coding agents read at the start of every session. Keeping it updated means the next session starts with context instead of from scratch.\n\n\n\n\n\n\n\nTipTagging files\n\n\n\nMost coding agents let you point at a file or directory with @, as in @data/adsl.parquet. Name the files to read and write as precisely as you can. Every file the agent doesn’t have to search for is one fewer chance to pick the wrong one.",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "whole-game.html#toy-task-demographics-table",
+    "href": "whole-game.html#toy-task-demographics-table",
+    "title": "1  The Whole Game",
+    "section": "1.7 Toy task: demographics table",
+    "text": "1.7 Toy task: demographics table\nTo make this concrete, here is a first prompt for a table every industry statistician has made by hand: demographics. The task is deliberately small. We are only using it to show the template in action.\n## Context\n\nWe are building a small Python package that produces clinical trial\nsummary tables as RTF files. This is its first table. Nothing exists\nyet beyond the project skeleton and an ADSL dataset at @data/adsl.parquet.\n\nThe demographics table summarizes age, sex, and race by actual treatment\n(`TRT01A`) for the safety population (`SAFFL == \"Y\"`). Age shows n,\nmean (SD), median, and min, max. Sex and race show n (%), with the\narm's N as the denominator.\n\nKeep it simple: a few plain functions, no classes.\n\n## Task\n\nYour high-level task is to create the demographics table.\n\n1. Write the summary logic in `src/agentic_coding_workshop/demog.py`.\n2. Write the table to `output/demog.rtf` with rtflite.\n3. Write tests in `tests/test_demog.py` that check every count and\n   percentage against an independent computation.\n\nYou are done when `uv run pytest` passes and `uv run ruff check` is clean.\nThen record what a future session should know in `AGENTS.md`.\n\n## Environment\n\n- Use uv for dependencies and commands.\n- polars and rtflite are installed. Add pytest as a dev dependency.\n  Ask before adding anything else.\n- The rtflite source is under @deps-src/rtflite/ if you need its API.\nRead as an optimization problem:\n\nObjective: create the table, broken into three subtasks with named files.\nRegularizer: plain functions, no classes, plus the display conventions.\nConstraints: pytest passes, ruff is clean, and the tests check every count and percentage against an independent computation.\n\nNotice that the display conventions start out as prose, which makes them a regularizer. The third subtask promotes counts and percentages to constraints. That’s double programming, delegated.\nA typical run goes like this. The agent inspects the data, writes the summary code and the tests, runs them, reads the failures, fixes the code, and stops once everything passes. Occasionally, it “fixes” a failing test instead. That’s the agent relaxing your constraint set, so read the diff.\nThen you open output/demog.rtf.",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "whole-game.html#the-unknown-knowns",
+    "href": "whole-game.html#the-unknown-knowns",
+    "title": "1  The Whole Game",
+    "section": "1.8 The unknown knowns",
+    "text": "1.8 The unknown knowns\nNow the table looks right and the tests pass. And yet:\n\nMean and SD have the same number of decimals, but your house rule gives the mean one more decimal than the raw data and the SD two more.\nRace categories are sorted alphabetically, not in CRF order.\nThere is no “Missing” row, so the race percentages don’t add up to 100.\n\nNothing in the prompt said otherwise. These are unknown knowns: things you know so well that you never think to say them. They are also the limit of this framework. The agent solves the problem you wrote down, not the one in your head. A constraint you never wrote down isn’t in \\(\\mathcal C\\), and the solver will happily return an optimal answer to the wrong problem.\nYou can’t list what you don’t know you know, but you can shrink the set:\n\nAsk the agent to state its assumptions, or to ask you questions before it starts. An assumption written down is one you can review.\nFold every correction back into context, as a line in AGENTS.md or in the agent’s memory. Pay for each lesson only once.\nPromote the ones that matter to the environment. If decimal precision is a rule, write the test.\n\nThen send the follow-up:\nFormat age by our precision rule: mean and median get one more decimal\nthan the raw data, SD gets two more. Order race categories by `RACEN`\nand add a \"Missing\" row. Add tests for both.\nOne prompt for the general shape, a few follow-ups for the details.",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
+    "objectID": "whole-game.html#review",
+    "href": "whole-game.html#review",
+    "title": "1  The Whole Game",
+    "section": "1.9 Review",
+    "text": "1.9 Review\nThis chapter is meant to give you a sense of how to work with a coding agent, summarized in Table 1.1.\nBefore you hit enter to submit prompts to a coding agent, ask three questions:\n\nTask: What do I want done, and how will we know it is done?\nContext: What should a good solution look like, and what would a new colleague need to know?\nEnvironment: What can the agent use, and what must it never violate?\n\nAnd keep a few habits:\n\nLet the model decide how to use its tools.\nContext is soft, the environment is hard. If something is non-negotiable, check it.\nTune \\(\\lambda\\) to the task.\nWrite fewer words. Don’t overfit the prompt to today’s model.\nHunt for unknown knowns, and fold every correction back in.\n\nThe rest of the book goes into greater detail on each piece. Vibe coding (Chapter 3) is about writing tasks and context. Agentic workflows (Chapter 4) chain many such problems together. Harness engineering (Chapter 5) builds the environment: the checks that turn preferences into constraints. Governance (Chapter 6) makes the whole procedure auditable.\nThe task defines what we want.\nThe context defines what kinds of solutions we prefer.\nThe environment defines what it means to be done.\n\n\n\n\nNegahban, Sahand N., Pradeep Ravikumar, Martin J. Wainwright, and Bin Yu. 2012. “A Unified Framework for High-Dimensional Analysis of \\(M\\)-Estimators with Decomposable Regularizers.” Statistical Science 27 (4): 538–57.\n\n\nYao, Shunyu, Jeffrey Zhao, Dian Yu, et al. 2023. “ReAct: Synergizing Reasoning and Acting in Language Models.” International Conference on Learning Representations.",
+    "crumbs": [
+      "Getting started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Whole Game</span>"
+    ]
+  },
+  {
     "objectID": "principle-overview.html",
     "href": "principle-overview.html",
-    "title": "1  Principles overview",
+    "title": "2  Principles overview",
     "section": "",
-    "text": "1.1 TBD\nTBD",
+    "text": "2.1 TBD\nTBD",
     "crumbs": [
       "Principles",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Principles overview</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Principles overview</span>"
     ]
   },
   {
     "objectID": "vibe-coding-overview.html",
     "href": "vibe-coding-overview.html",
-    "title": "2  Vibe coding overview",
+    "title": "3  Vibe coding overview",
     "section": "",
-    "text": "2.1 TBD\nTBD",
+    "text": "3.1 TBD\nTBD",
     "crumbs": [
       "Vibe coding",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Vibe coding overview</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Vibe coding overview</span>"
     ]
   },
   {
     "objectID": "agentic-workflow-overview.html",
     "href": "agentic-workflow-overview.html",
-    "title": "3  Agentic workflows overview",
+    "title": "4  Agentic workflows overview",
     "section": "",
-    "text": "3.1 TBD\nTBD",
+    "text": "4.1 TBD\nTBD",
     "crumbs": [
       "Agentic workflows",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Agentic workflows overview</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Agentic workflows overview</span>"
     ]
   },
   {
     "objectID": "harness-engineering-overview.html",
     "href": "harness-engineering-overview.html",
-    "title": "4  Harness engineering overview",
+    "title": "5  Harness engineering overview",
     "section": "",
-    "text": "4.1 TBD\nTBD",
+    "text": "5.1 TBD\nTBD",
     "crumbs": [
       "Harness engineering",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Harness engineering overview</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Harness engineering overview</span>"
     ]
   },
   {
     "objectID": "governance-overview.html",
     "href": "governance-overview.html",
-    "title": "5  Governance overview",
+    "title": "6  Governance overview",
     "section": "",
-    "text": "5.1 TBD\nTBD",
+    "text": "6.1 TBD\nTBD",
     "crumbs": [
       "Governance",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Governance overview</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Governance overview</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Negahban, Sahand N., Pradeep Ravikumar, Martin J. Wainwright, and Bin\nYu. 2012. “A Unified Framework for High-Dimensional Analysis of\nM-Estimators with Decomposable\nRegularizers.” Statistical Science 27 (4): 538–57.\n\n\nYao, Shunyu, Jeffrey Zhao, Dian Yu, et al. 2023.\n“ReAct: Synergizing Reasoning and Acting in Language\nModels.” International Conference on Learning\nRepresentations.",
+    "crumbs": [
+      "References"
     ]
   }
 ]
